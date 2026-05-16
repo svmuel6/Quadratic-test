@@ -1,0 +1,43 @@
+#include <iostream>
+#include "QuadraticEquation.h"
+
+int main()
+{
+    double a, b, c;
+
+    std::cout << "Enter coefficient a: ";
+    std::cin >> a;
+
+    std::cout << "Enter coefficient b: ";
+    std::cin >> b;
+
+    std::cout << "Enter coefficient c: ";
+    std::cin >> c;
+
+    try
+    {
+        QuadraticResult result = QuadraticEquation::Solve(a, b, c);
+
+        if (result.numberOfRoots == 0)
+        {
+            std::cout << "No real roots." << std::endl;
+        }
+        else if (result.numberOfRoots == 1)
+        {
+            std::cout << "One real root: x = "
+                      << result.x1 << std::endl;
+        }
+        else
+        {
+            std::cout << "Two real roots:" << std::endl;
+            std::cout << "x1 = " << result.x1 << std::endl;
+            std::cout << "x2 = " << result.x2 << std::endl;
+        }
+    }
+    catch (const std::exception& ex)
+    {
+        std::cout << "Error: " << ex.what() << std::endl;
+    }
+
+    return 0;
+}
